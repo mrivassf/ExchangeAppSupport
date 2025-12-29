@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionalidad Canje App - Guía de Soporte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .presentation {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px;
+            min-height: 600px;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .slide h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .slide h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .actors {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .actor-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .actor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .actor-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .actor-card p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .process-step {
+            background: #f8f9ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .process-step strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box {
+            background: #fff4e1;
+            border: 2px solid #ffa726;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .highlight-box h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .difference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .difference-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .difference-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .difference-table tr:nth-child(even) {
+            background: #f8f9ff;
+        }
+
+        .key-points {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .slide-counter {
+            color: #666;
+            font-weight: bold;
+        }
+
+        .warning {
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <h1>🎁 Nueva Funcionalidad</h1>
+            <h1>CANJE APP</h1>
+            <p class="subtitle">Guía completa para el área de soporte</p>
+            <div style="text-align: center; margin-top: 60px;">
+                <div
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: inline-block; padding: 30px 60px; border-radius: 15px; color: white;">
+                    <h3 style="color: white; margin: 0;">Procesos incluidos:</h3>
+                    <p style="font-size: 1.3em; margin-top: 15px;">✓ Canje desde APP Pedigrido (APP PG)</p>
+                    <p style="font-size: 1.3em; margin-top: 10px;">✓ Canje desde TOTEM I+D (Grido Go)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Actores del Sistema -->
+        <div class="slide">
+            <h2>🎭 Actores del Sistema</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em; color: #666;">Sistemas que intervienen en el proceso de
+                canje:</p>
+
+            <div class="actors">
+                <div class="actor-card">
+                    <h4>📱 APP PG</h4>
+                    <p>Aplicación Pedigrido. Interface del socio para realizar pedidos y canjes.</p>
+                </div>
+                <div class="actor-card">
+                    <h4>🖥️ I+D</h4>
+                    <p>Sistema I+D (Grido Go). Interface del socio para realizar pedidos y canjes.</p>
+                </div>
+
+                <div class="actor-card">
+                    <h4>🎯 Smart Loyalty (SML)</h4>
+                    <p>Sistema de gestión de puntos y fidelización. Provee información del socio y maneja retención de
+                        puntos.</p>
+                </div>
+
+                <div class="actor-card">
+                    <h4>📋 Smart Pedidos (SMP)</h4>
+                    <p>Sistema de gestión de órdenes. Centraliza y distribuye pedidos al punto de venta.</p>
+                </div>
+
+                <div class="actor-card">
+                    <h4>🏪 POS</h4>
+                    <p>Punto de venta (Smart Cloud o Smart Fran On Premise). Donde se prepara y finaliza el pedido.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>💡 Importante para Soporte:</h4>
+                <p>Cada actor tiene su rol específico. Un fallo en cualquiera de ellos puede afectar el proceso
+                    completo. Es crucial identificar en qué punto se produce el error.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Proceso APP PG - Parte 1 -->
+        <div class="slide">
+            <h2>📱 Proceso: Canje desde APP PG (Parte 1)</h2>
+            <h3>1. Inicio y Consulta de Información</h3>
+
+            <div class="process-step">
+                <strong>Paso 1: Consulta a Smart Loyalty</strong>
+                <p>SML provee a la APP PG mediante APIs Mobile la siguiente información:</p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>Datos del socio</li>
+                    <li>Puntos totales y puntos disponibles</li>
+                    <li>Canjes disponibles</li>
+                    <li>Promociones activas y vigentes</li>
+                    <li>Productos activos y vigentes</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <strong>Paso 2: Selección del Socio</strong>
+                <p>El socio realiza las siguientes acciones:</p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>Tipo de pedido: Delivery o Retiro en POS</li>
+                    <li>Sucursal: Selecciona entre sucursales cercanas y abiertas</li>
+                    <li>Artículos: Productos, promociones y canjes</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Validación Importante:</strong>
+                <p>Para realizar canjes, el socio debe cumplir con:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Tarjeta habilitada para canjes en el sistema SML</li>
+                    <li>Puntos suficientes para el canje solicitado</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Proceso APP PG - Parte 2 -->
+        <div class="slide">
+            <h2>📱 Proceso: Canje desde APP PG (Parte 2)</h2>
+            <h3>2. Pago y Confirmación</h3>
+
+            <div class="process-step">
+                <strong>Paso 3: Forma de Pago</strong>
+                <p>Efectivo: Se paga al finalizar la venta en el POS</p>
+                <p>Electrónico: Se paga directamente desde el móvil</p>
+            </div>
+
+            <div class="process-step">
+                <strong>Paso 4: Finalización y Notificación</strong>
+                <p>1. El socio finaliza el pedido en APP PG</p>
+                <p>2. Se notifica a Smart Pedidos (SMP)</p>
+                <p>3. En SMP se genera un nuevo documento con número de orden</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🔄 Proceso de Confirmación Crítico:</h4>
+                <p><strong>Secuencia obligatoria:</strong></p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>SMP recibe el pedido → Informa OK a APP PG</li>
+                    <li>APP PG responde OK a SMP</li>
+                    <li><strong>SOLO ENTONCES</strong> se ejecuta:</li>
+                    <ul style="margin-left: 20px; margin-top: 5px;">
+                        <li>Aparece un nuevo pedido en el Kanban del POS</li>
+                        <li>Se crea registro en tabla SML.ORDER de la BD SML</li>
+                        <li>Se retienen puntos PROVISORIAMENTE</li>
+                    </ul>
+                </ol>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Punto Crítico para Soporte:</strong>
+                <p>Si la confirmación bidireccional falla, NO se retienen los puntos y el pedido no se registra en SML.
+                    Verificar logs de comunicación entre SMP y APP PG.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Proceso APP PG - Parte 3 -->
+        <div class="slide">
+            <h2>📱 Proceso: Canje desde APP PG (Parte 3)</h2>
+            <h3>3. Gestión en POS y Finalización</h3>
+
+            <div class="process-step">
+                <strong>Paso 5: Visualización en POS</strong>
+                <p>SMP informa al POS y el pedido aparece como Nuevo en el KANBAN</p>
+            </div>
+
+            <div class="process-step">
+                <strong>Paso 6: Estados del Pedido</strong>
+                <p>El colaborador va cambiando los estados:</p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>Preparación: El pedido está siendo preparado</li>
+                    <li>Listo para Entrega: El pedido está completo</li>
+                    <li>Finalizados: Se procesa el pago final</li>
+                </ol>
+            </div>
+
+            <div class="process-step">
+                <strong>Paso 7: Finalización y Descuento de Puntos</strong>
+                <p>Si el pedido NO se pagó desde la App PG con medio de pago electrónico:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Se abre pantalla de Ventas-Vuelto,</li>
+                    <li>Se selecciona forma de pago,</li>
+                    <li>Se confirma el pago y se finaliza el pedido</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>En ambos casos:</strong></p>
+                <p style="background: #e3f2fd; padding: 15px; border-radius: 5px; margin-top: 10px;">Al finalizar el
+                    pedido en POS se descuentan los puntos <strong>DEFINITIVAMENTE</strong> en Smart Loyalty</p>
+            </div>
+
+            <div class="key-points">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ Puntos Clave para el Socio:</h4>
+                <ul>
+                    <li>Los puntos se retienen al crear la orden (provisorio)</li>
+                    <li>Los puntos se descuentan al finalizar en POS (definitivo)</li>
+                    <li>Los puntos se devuelven si se cancela el pedido</li>
+                    <li>Si el pedido no se finaliza, los puntos quedan retenidos por un día solamente</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Proceso I+D - Completo -->
+        <div class="slide">
+            <h2>🖥️ Proceso: Canje desde I+D (Grido Go)</h2>
+
+            <div class="process-step">
+                <strong>Fase 1: Consulta y Selección en Totem</strong>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>SML provee información a I+D mediante APIs Mobile</li>
+                    <li>I+D muestra la información en los totems de Grido Go</li>
+                    <li>Socio selecciona artículos, promociones y canjes</li>
+                    <li>Validación: tarjeta habilitada para canjes y puntos suficientes</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <strong>Fase 2: Pago Electrónico</strong>
+                <p style="background: #fff3e0; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                    <strong>⚠️ Diferencia clave:</strong> En algunas sucursales de I+D identificadas como locales
+                    inteligentes solo se permite pago ELECTRÓNICO directo desde el totem, en las demas sucursales se
+                    permite pago EFECTIVO o ELECTRÓNICO.
+                </p>
+            </div>
+
+            <div class="process-step">
+                <strong>Fase 3: Confirmación y Retención de Puntos</strong>
+                <p>Secuencia idéntica a APP PG:</p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>Se notifica a SMP con número de orden</li>
+                    <li>SMP confirma a I+D el pedido recibido</li>
+                    <li>I+D responde OK a SMP</li>
+                    <li>Se registra en la tabla SML.ORDER de SML y retienen puntos provisoriamente</li>
+                </ol>
+            </div>
+
+            <div class="process-step">
+                <strong>Fase 4: Gestión en POS</strong>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>Pedido aparece en KANBAN como Nuevo</li>
+                    <li>Estados: Preparación → Listo para Entrega</li>
+                    <li><strong>En sucursales Inteligentes:</strong> El pago ya fue procesado en el totem por lo cual no
+                        se requiere pago en el POS</li>
+                    <li>Al pasar al último estado, se finaliza automáticamente</li>
+                    <li>Se descuentan puntos DEFINITIVAMENTE en SML</li>
+                    <li><strong>En otras sucursales I+D:</strong>El pago se procesa en el POS</li>
+                    <li>Al pasar al último estado, se visualiza la pantalla Ventas-Vuelto, se selecciona el metodo de
+                        pago y se finaliza automáticamente</li>
+                    <li>Se descuentan puntos DEFINITIVAMENTE en SML</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Diferencias entre Procesos -->
+        <div class="slide">
+            <h2>🔄 Diferencias entre APP PG e I+D</h2>
+
+            <table class="difference-table">
+                <tr>
+                    <th>Aspecto</th>
+                    <th>APP PG (Pedigrido)</th>
+                    <th>I+D (Grido Go)</th>
+                </tr>
+                <tr>
+                    <td><strong>Dispositivo</strong></td>
+                    <td>Móvil del cliente</td>
+                    <td>Totem en sucursal</td>
+                </tr>
+                <tr>
+                    <td><strong>Tipo de pedido</strong></td>
+                    <td>Delivery o Retiro</td>
+                    <td>Solo Retiro en sucursal</td>
+                </tr>
+                <tr>
+                    <td><strong>Selección de sucursal</strong></td>
+                    <td>Sí, entre cercanas abiertas</td>
+                    <td>No, es la sucursal del totem</td>
+                </tr>
+                <tr>
+                    <td><strong>Formas de pago</strong></td>
+                    <td>Efectivo o Electrónico</td>
+                    <td>Solo Electrónico (Locales Inteligentes)- Efectivo o Electrónico (otras)</td>
+                </tr>
+                <tr>
+                    <td><strong>Momento de pago</strong></td>
+                    <td>En móvil o en POS al finalizar</td>
+                    <td>Siempre en el totem</td>
+                </tr>
+                <tr>
+                    <td><strong>Pantalla Cuenta y Vuelto</strong></td>
+                    <td>Sí, si no se pagó previamente</td>
+                    <td>No, el pago ya se procesó</td>
+                </tr>
+                <tr>
+                    <td><strong>Proceso de confirmación</strong></td>
+                    <td>SMP ↔ APP PG ↔ SML</td>
+                    <td>SMP ↔ I+D ↔ SML</td>
+                </tr>
+            </table>
+
+            <div class="key-points" style="margin-top: 30px;">
+                <h4 style="color: #2e7d32; margin-bottom: 15px;">✅ Lo que es IGUAL en ambos procesos:</h4>
+                <ul>
+                    <li>Consulta de información desde SML</li>
+                    <li>Validación de tarjeta habilitada para canjes y puntos</li>
+                    <li>Retención provisional de puntos tras confirmación</li>
+                    <li>Gestión de estados en POS (KANBAN)</li>
+                    <li>Descuento definitivo de puntos al finalizar</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Casos de Soporte -->
+        <div class="slide">
+            <h2>🛠️ Casos Comunes de Soporte</h2>
+
+            <h3>Problema 1: "El pedido no aparece en el POS"</h3>
+            <div class="process-step">
+                <strong>Verificar:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>¿Desde que plataforma se realizo el pedido, desde APP PG o I+D?</li>
+                    <li>¿SML recibio el pedido?, ¿Se creó el registro en SML.ORDER? si no es asi probablementeSMP no
+                        recibió la notificación desde APP PG o I+D</li>
+                    <li>¿El socio tiene puntos suficientes para realizar un canje?</li>
+                    <li>¿El socio tiene la tarjeta habilitada para canjes?</li>
+                    <li>¿El POS está conectado a SMP o se gestiona desde la plataforma de PEDIGRIDO?</li>
+                </ul>
+            </div>
+
+            <h3>Problema 2: "Los puntos no se descontaron"</h3>
+            <div class="process-step">
+                <strong>Verificar:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>¿El pedido se finalizó en el POS?</li>
+                    <li>¿Cambió al último estado correctamente en la tablero de KANBAN?</li>
+                    <li>¿Ocurrio alguna excepción/ error en el POS?</li>
+                    <li>Se genero correctamente el registro en SML.ORDER?</li>
+                    <li>¿El socio tiene puntos suficientes para realizar un canje?</li>
+                </ul>
+            </div>
+
+            <h3>Problema 3: "Se cancelo el pedido, pero los puntos no se devolvieron"</h3>
+            <div class="process-step">
+                <strong>Verificar:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Solicitar al socio que actualice la pantalla de la app, o que salga y vuelva a ingresar a la app
+                    </li>
+                    <li>Si se cancelo el pedido desde la plataforma de PEDIGRIDO, los puntos se devolveran en el
+                        transcurso de 24hs</li>
+                </ul>
+            </div>
+
+            <h3>Problema 4: "Otros casos, recabar información lo mas completa posible para poder escalar el caso a IT"
+            </h3>
+            <div class="Warning">
+                <strong>Solicitar informacion para Verificar el caso:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li>Platafroma desde donde se realizo el pedido (App PG o I+D)</li>
+                    <li>Datos del SOCIO que realizo el pedido</li>
+                    <li>Punto de venta al que se asigno el pedido, BranchOffice, sucursal, branch</li>
+                    <li>El pedido tiene el formato correcto? <a
+                            href="https://docs.google.com/document/d/1vsR5MQudHD3suZq0RpybLDPGWprEcSCAfFiHiQYUuJg/edit?usp=sharing"
+                            target="_blank">Ver formato pedido en la documentacion</a></li>
+                    <li>¿El socio tiene puntos suficientes para realizar un canje?</li>
+                    <li>¿El socio tiene la tarjeta habilitada para canjes?</li>
+                    <li>¿El POS esta conectado a SMP o se gestiona desde la plataforma de PEDIGRIDO?</li>
+                    <li>¿El POS tiene la version correcta?<strong> Versión de on-premise: 17.02 o superior</strong></li>
+                    <li>¿El Agente tiene la version correcta?<strong> Versión de Agente 1.33 o superior</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Flujo de Estados -->
+        <div class="slide">
+            <h2>📊 Estados del Pedido en POS</h2>
+
+            <div style="background: #f5f5f5; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                <div style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap;">
+                    <div style="text-align: center; margin: 10px;">
+                        <div
+                            style="background: #ff9800; color: white; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2em;">
+                            NUEVO</div>
+                        <p style="margin-top: 10px; color: #666;">PREPARACIÓN</p>
+                    </div>
+                    <div style="font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center; margin: 10px;">
+                        <div
+                            style="background: #2196f3; color: white; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2em;">
+                            LISTO PARA ENTREGAR</div>
+                        <p style="margin-top: 10px; color: #666;">En proceso</p>
+                    </div>
+                    <div style="font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center; margin: 10px;">
+                        <div
+                            style="background: #9c27b0; color: white; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2em;">
+                            FINALIZADO</div>
+                        <p style="margin-top: 10px; color: #666;">Para entregar</p>
+                    </div>
+                    <div style="font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center; margin: 10px;">
+                        <div
+                            style="background: #4caf50; color: white; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2em;">
+                            FINALIZADO</div>
+                        <p style="margin-top: 10px; color: #666;">Puntos descontados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>💡 Para el Equipo de Soporte:</h4>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                    <li><strong>Nuevo:</strong> Puntos retenidos provisionalmente</li>
+                    <li><strong>Preparación/ Listo para Entregar</strong> Puntos aún retenidos</li>
+                    <li><strong>Finalizado:</strong> Puntos descontados definitivamente</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Si un pedido queda "colgado" en cualquier estado anterior a FINALIZADO:</strong>
+                <p style="margin-top: 10px;">Los puntos permanecerán retenidos hasta que corra el proceso que cancela la
+                    orden automaticamente.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Resumen Final -->
+        <div class="slide">
+            <h2>📝 Resumen Ejecutivo</h2>
+
+            <div class="key-points">
+                <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 1.3em;">✅ Puntos Críticos a Recordar:</h4>
+
+                <p><strong>1. Flujo de Confirmación:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>APP PG → SMP → Confirmación mutua → SML.ORDER.</li>
+                    <li>I+D → SMP → Confirmación mutua → SML.ORDER.</li>
+                    <li>Sin confirmación completa, NO hay retención de puntos, No llega el pedido al POS.</li>
+                </ul>
+
+                <p><strong>2. Estados de los Puntos:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li><strong>Provisorio:</strong> Al crear orden, SML retiene los puntos provisionales por el pedido
+                        para evitar que se intenten utilizar por otro medio(canje pos o transferencia de puntos).</li>
+                    <li><strong>Definitivo:</strong> Al finalizar pedido en POS, se descuentan los puntos
+                        definitivamente.</li>
+                </ul>
+
+                <p><strong>3. Diferencias Clave APP PG vs I+D:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>APP PG: Efectivo o Electrónico, con selección de sucursal</li>
+                    <li>I+D: Solo Electrónico en totem Inteligentes, Efectivo o Electrónico otras sucursales, sin
+                        selección de sucursal</li>
+                </ul>
+
+                <p><strong>4. Gestión en POS:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>Desde el KANBAN se muestran todos los pedidos pendientes se peude identificar por el logo
+                        directamente la plataforma</li>
+                    <li>Colaborador gestiona estados manualmente</li>
+                    <li>Finalización dispara descuento definitivo de puntos</li>
+                </ul>
+            </div>
+
+            <div
+                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                <h3 style="color: white; margin-bottom: 15px;">📞 Contacto para Consultas Técnicas</h3>
+                <p>Ante cualquier duda, consultar documentación técnica o escalar al área correspondiente</p>
+            </div>
+        </div>
+
+        <!-- Navegación -->
+        <div class="navigation">
+            <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">10</span></span>
+            <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide;
+
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+
+</html>
